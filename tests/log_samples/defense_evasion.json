@@ -1,0 +1,5 @@
+{"Image": "C:\\Windows\\System32\\rundll32.exe", "CommandLine": "rundll32.exe C:\\Users\\Public\\malware.dll,DllRegisterServer", "User": "DESKTOP-ABC123\\user", "ProcessId": 5555, "ParentImage": "C:\\Windows\\System32\\cmd.exe"}
+{"Image": "C:\\Windows\\System32\\rundll32.exe", "CommandLine": "rundll32.exe javascript:\"\\..\\mshtml,RunHTMLApplication\"", "User": "DESKTOP-ABC123\\attacker", "ProcessId": 6666, "ParentImage": "C:\\Windows\\explorer.exe"}
+{"Image": "C:\\Windows\\System32\\rundll32.exe", "CommandLine": "rundll32.exe C:\\AppData\\Local\\Temp\\payload.dll,Start", "User": "DESKTOP-ABC123\\user", "ProcessId": 7777, "ParentImage": "C:\\Windows\\System32\\cmd.exe"}
+{"Image": "C:\\Windows\\System32\\rundll32.exe", "CommandLine": "rundll32.exe shell32.dll,Control_RunDLL desk.cpl", "User": "DESKTOP-ABC123\\admin", "ProcessId": 8888, "ParentImage": "C:\\Windows\\explorer.exe"}
+{"Image": "C:\\Windows\\System32\\rundll32.exe", "CommandLine": "rundll32.exe printui.dll,PrintUIEntry", "User": "DESKTOP-ABC123\\admin", "ProcessId": 9999, "ParentImage": "C:\\Windows\\System32\\svchost.exe"}

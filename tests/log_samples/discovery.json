@@ -1,0 +1,4 @@
+{"Image": "C:\\Windows\\System32\\net.exe", "CommandLine": "net user", "User": "DESKTOP-ABC123\\admin", "ProcessId": 1111, "ParentImage": "C:\\Windows\\System32\\cmd.exe"}
+{"Image": "C:\\Windows\\System32\\net.exe", "CommandLine": "net localgroup administrators", "User": "DESKTOP-ABC123\\attacker", "ProcessId": 2222, "ParentImage": "C:\\Windows\\System32\\cmd.exe"}
+{"Image": "C:\\Windows\\System32\\net1.exe", "CommandLine": "net1 group \"Domain Admins\" /domain", "User": "CORP\\admin", "ProcessId": 3333, "ParentImage": "C:\\Windows\\System32\\net.exe"}
+{"Image": "C:\\Windows\\System32\\whoami.exe", "CommandLine": "whoami /all", "User": "DESKTOP-ABC123\\admin", "ProcessId": 4444, "ParentImage": "C:\\Windows\\System32\\cmd.exe"}

@@ -1,0 +1,40 @@
+title: Suspicious Rundll32 Execution
+id: d6f4b9c3-0a5e-4f2b-9c6d-7e8f0a1b2c3d
+status: experimental
+description: |
+  Detects suspicious Rundll32.exe execution patterns commonly used to proxy
+  execution of malicious code, bypass application whitelisting, or load
+  malicious DLLs from unusual locations.
+references:
+    - https://attack.mitre.org/techniques/T1218/011/
+    - https://lolbas-project.github.io/lolbas/Binaries/Rundll32/
+author: Your Name
+date: 2026/01/16
+tags:
+    - attack.defense_evasion
+    - attack.t1218.011
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\rundll32.exe'
+    suspicious_paths:
+        CommandLine|contains:
+            - '\AppData\Local\Temp\'
+            - '\Users\Public\'
+            - '\ProgramData\'
+            - 'http://'
+            - 'https://'
+            - '\\\\' 
+    suspicious_exports:
+        CommandLine|contains:
+            - ',DllRegisterServer'
+            - ',DllUnregisterServer'
+            - 'javascript:'
+            - 'shell32.dll,Control_RunDLL'
+    condition: selection and (suspicious_paths or suspicious_exports)
+falsepositives:
+    - Legitimate software installation
+    - System administration scripts
+level: medium

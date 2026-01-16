@@ -1,0 +1,34 @@
+title: Local Account Enumeration via Net Commands
+id: c5e3a8b2-9f4d-4e1a-8b5c-6d7e8f9a0b1c
+status: experimental
+description: |
+  Detects the use of net.exe or net1.exe to enumerate local or domain accounts,
+  a common reconnaissance technique used by attackers after initial access.
+references:
+    - https://attack.mitre.org/techniques/T1087/001/
+    - https://attack.mitre.org/techniques/T1087/002/
+author: Your Name
+date: 2026/01/16
+tags:
+    - attack.discovery
+    - attack.t1087.001
+    - attack.t1087.002
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_tool:
+        Image|endswith:
+            - '\net.exe'
+            - '\net1.exe'
+    selection_commands:
+        CommandLine|contains:
+            - ' user'
+            - ' localgroup'
+            - ' group'
+            - ' accounts'
+    condition: selection_tool and selection_commands
+falsepositives:
+    - Legitimate administrator activity
+    - Help desk scripts
+level: low
