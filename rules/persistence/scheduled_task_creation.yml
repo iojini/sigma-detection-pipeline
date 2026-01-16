@@ -1,0 +1,53 @@
+title: Suspicious Scheduled Task Created via Command Line
+id: e7a5c9d4-1b6f-4c3e-9d8a-2f0b1c2d3e4f
+status: experimental
+description: |
+  Detects scheduled task creation via schtasks.exe with suspicious characteristics.
+  This technique is commonly used by ransomware groups including Scattered Spider,
+  Play, and Akira for establishing persistence after initial access.
+references:
+    - https://attack.mitre.org/techniques/T1053/005/
+    - https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-352a
+    - https://www.rapid7.com/blog/post/inside-the-ransomware-economy-in-2025-q2-trends-key-insights-you-need-to-know/
+author: Your Name
+date: 2026/01/16
+tags:
+    - attack.persistence
+    - attack.execution
+    - attack.t1053.005
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_schtasks:
+        Image|endswith: '\schtasks.exe'
+        CommandLine|contains: '/create'
+    suspicious_paths:
+        CommandLine|contains:
+            - '\AppData\Local\Temp\'
+            - '\AppData\Roaming\'
+            - '\Users\Public\'
+            - '\ProgramData\'
+            - 'C:\Windows\Temp\'
+    suspicious_commands:
+        CommandLine|contains:
+            - 'powershell'
+            - 'cmd.exe /c'
+            - 'mshta'
+            - 'wscript'
+            - 'cscript'
+            - 'rundll32'
+            - 'regsvr32'
+            - '.bat'
+            - '.vbs'
+            - '.ps1'
+            - 'bypass'
+            - 'encoded'
+            - 'http://'
+            - 'https://'
+    condition: selection_schtasks and (suspicious_paths or suspicious_commands)
+falsepositives:
+    - Legitimate software installation
+    - Administrative scripts
+    - Software updaters
+level: medium
