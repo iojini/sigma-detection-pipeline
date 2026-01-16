@@ -1,0 +1,35 @@
+title: Suspicious Encoded PowerShell Command
+id: f3a1c8e2-5b7d-4a9e-8c1f-2d3e4f5a6b7c
+status: experimental
+description: |
+  Detects PowerShell execution with encoded commands, commonly used by attackers
+  to obfuscate malicious scripts and evade detection.
+references:
+    - https://attack.mitre.org/techniques/T1059/001/
+    - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1059.001/T1059.001.md
+author: Your Name
+date: 2026/01/16
+modified: 2026/01/16
+tags:
+    - attack.execution
+    - attack.t1059.001
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains:
+            - '-enc'
+            - '-EncodedCommand'
+            - '-ec'
+            - '-encodedargument'
+            - '-e '
+    filter_vscode:
+        CommandLine|contains: 'VSCode'
+    condition: selection and not filter_vscode
+falsepositives:
+    - Legitimate administrative scripts using encoding for special characters
+    - Some software installers and updaters
+    - Visual Studio Code integrated terminal
+level: medium
