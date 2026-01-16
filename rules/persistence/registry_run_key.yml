@@ -32,3 +32,4 @@ falsepositives:
     - Legitimate software installation
     - System administrators adding startup programs
 level: medium
+
