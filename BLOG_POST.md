@@ -1,6 +1,6 @@
 # Building a Detection Engineering Pipeline: A Practical Guide
 
-As part of my journey into detection engineering, I built a Python-based pipeline that validates, tests, and manages Sigma detection rules. This post walks through my methodology and key learnings.
+I built a Python-based pipeline that validates, tests, and manages Sigma detection rules. This post walks through my methodology.
 
 ## The Problem
 
